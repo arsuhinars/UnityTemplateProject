@@ -17,7 +17,7 @@ RenderSettings:
   m_Fog: 0
   m_FogColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
   m_FogMode: 3
-  m_FogDensity: 0.01
+  m_FogDensity: 0.28
   m_LinearFogStart: 0
   m_LinearFogEnd: 300
   m_AmbientSkyColor: {r: 0.212, g: 0.227, b: 0.259, a: 1}
@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 2044040167}
-  m_IndirectSpecularColor: {r: 0.4485386, g: 0.80229014, b: 0.9263655, a: 1}
+  m_IndirectSpecularColor: {r: 0.4410998, g: 0.80090547, b: 0.9262959, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -5071,6 +5071,7 @@ MonoBehaviour:
     RefIds:
     - rid: 2974633701654134784
       type: {class: Cube, ns: UnityEngine.ProBuilder.Shapes, asm: Unity.ProBuilder}
+      data: 
 --- !u!114 &1684846995
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5846,6 +5847,7 @@ MonoBehaviour:
     RefIds:
     - rid: 2974633650568560642
       type: {class: Cube, ns: UnityEngine.ProBuilder.Shapes, asm: Unity.ProBuilder}
+      data: 
 --- !u!114 &1883225680
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6457,7 +6459,7 @@ Light:
   serializedVersion: 10
   m_Type: 1
   m_Shape: 0
-  m_Color: {r: 1, g: 0.95686275, b: 0.8392157, a: 1}
+  m_Color: {r: 1, g: 0.98095125, b: 0.929, a: 1}
   m_Intensity: 1
   m_Range: 10
   m_SpotAngle: 30
@@ -6467,7 +6469,7 @@ Light:
     m_Type: 2
     m_Resolution: -1
     m_CustomResolution: -1
-    m_Strength: 0.6
+    m_Strength: 0.7
     m_Bias: 0.05
     m_NormalBias: 0.4
     m_NearPlane: 0.2
@@ -6497,13 +6499,13 @@ Light:
     serializedVersion: 2
     m_Bits: 4294967295
   m_RenderingLayerMask: 1
-  m_Lightmapping: 2
+  m_Lightmapping: 1
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 1.02e-43, y: 4.5e-44, z: 1.0927e-41, w: 7.34684e-40}
+  m_BoundingSphereOverride: {x: 1.02e-43, y: 1.7e-44, z: 4.617e-42, w: 9.734563e-39}
   m_UseBoundingSphereOverride: 0
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
@@ -6644,6 +6646,7 @@ MonoBehaviour:
     RefIds:
     - rid: 2974633697338982406
       type: {class: Cube, ns: UnityEngine.ProBuilder.Shapes, asm: Unity.ProBuilder}
+      data: 
 --- !u!114 &2059558237
 MonoBehaviour:
   m_ObjectHideFlags: 0
