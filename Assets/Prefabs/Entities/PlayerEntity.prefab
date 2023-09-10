@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5773626412996508620}
   - component: {fileID: 1396855041339048774}
   - component: {fileID: 6118641571442606077}
-  m_Layer: 6
+  m_Layer: 7
   m_Name: Model
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -62,7 +62,7 @@ MeshRenderer:
   m_RenderingLayerMask: 2
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: c925ee89bc52f7643add42fa770a60ba, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -223,7 +223,7 @@ GameObject:
   - component: {fileID: 3681003429071458903}
   - component: {fileID: 2279998762721081423}
   - component: {fileID: 7724780284098877350}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -420,7 +420,7 @@ MonoBehaviour:
   m_airAccel: 6
   m_groundedDrag: 12
   m_airDrag: 0.8
-  m_jumpVelocity: 12
+  m_jumpVelocity: 14
   m_gravityScale: 2
   m_rotationSmoothTime: 0.15
   m_footstepClips:
@@ -428,6 +428,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 2f9d94cf899e8244eacc38d855ed4973, type: 3}
   - {fileID: 8300000, guid: 8009a34baadbf654faaf8f8e1e1b6f02, type: 3}
   m_footstepBaseDelay: 0.3
+  m_minFlyTime: 0.5
 --- !u!1001 &811983054243243147
 PrefabInstance:
   m_ObjectHideFlags: 0
