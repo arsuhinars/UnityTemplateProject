@@ -36,7 +36,7 @@ namespace Game.Entities
             OnReleased?.Invoke();
         }
 
-        protected virtual void Awake()
+        protected virtual void Start()
         {
             IsSpawned = true;
             gameObject.SetActive(true);

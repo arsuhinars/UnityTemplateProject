@@ -31,14 +31,13 @@ namespace Game.Entities
         private CharacterMovement m_movement;
         private GameInputActions m_inputActions;
 
-        protected override void Awake()
+        private void Awake()
         {
             m_movement = GetComponent<CharacterMovement>();
             m_inputActions = new();
 
             OnSpawned += SpawnHandler;
             OnReleased += ReleasedHandler;
-            base.Awake();
         }
 
         private void OnEnable()

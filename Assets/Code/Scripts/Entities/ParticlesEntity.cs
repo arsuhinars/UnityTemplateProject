@@ -9,12 +9,11 @@ namespace Game.Entities
 
         private ParticleSystem m_particleSystem;
 
-        protected override void Awake()
+        private void Awake()
         {
             m_particleSystem = GetComponent<ParticleSystem>();
 
             OnSpawned += SpawnHandler;
-            base.Awake();
         }
 
         private void Update()

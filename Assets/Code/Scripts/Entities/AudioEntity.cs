@@ -9,12 +9,10 @@ namespace Game.Entities
 
         private AudioSource m_audioSource;
 
-        protected override void Awake()
+        private void Awake()
         {
             m_audioSource = GetComponent<AudioSource>();
             m_audioSource.loop = false;
-
-            base.Awake();
         }
 
         private void Update()

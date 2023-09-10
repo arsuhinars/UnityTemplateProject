@@ -1,5 +1,6 @@
 using Game.Entities;
 using Game.Managers;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -43,20 +44,26 @@ namespace Game.Components.Pools
             m_activeEntities.Clear();
         }
 
-        private void Start()
+        private IEnumerator Start()
         {
+            GameEventsManager.Instance.OnMainMenuOpened += OnMainMenuOpened;
+            GameEventsManager.Instance.OnStarted += OnGameStarted;
+
             m_activeEntities = new();
             m_inactiveEntities = new();
 
             for (int i = 0; i < m_poolSize; i++)
             {
                 var entity = Instantiate(m_prefab, transform);
-                entity.Release();
                 m_inactiveEntities.AddLast(entity);
             }
 
-            GameEventsManager.Instance.OnMainMenuOpened += OnMainMenuOpened;
-            GameEventsManager.Instance.OnStarted += OnGameStarted;
+            yield return null;
+
+            foreach (var entity in m_inactiveEntities)
+            {
+                entity.Release();
+            }
         }
 
         private void OnDestroy()

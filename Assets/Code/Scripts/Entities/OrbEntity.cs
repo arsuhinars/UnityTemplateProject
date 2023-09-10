@@ -8,10 +8,9 @@ namespace Game.Entities
         [Header("Settings")]
         [SerializeField] private AudioClip m_pickupClip;
 
-        protected override void Awake()
+        private void Awake()
         {
             OnPickedUp += PickupHandler;
-            base.Awake();
         }
 
         private void PickupHandler(GameObject target)
