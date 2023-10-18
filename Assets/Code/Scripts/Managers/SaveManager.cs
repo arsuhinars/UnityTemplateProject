@@ -54,7 +54,7 @@ namespace Game.Managers
 
         private void Start()
         {
-            m_progressDataPath = Application.persistentDataPath + Path.PathSeparator + "save.json";
+            m_progressDataPath = Application.persistentDataPath + Path.DirectorySeparatorChar + "save.json";
 
             Load();
         }

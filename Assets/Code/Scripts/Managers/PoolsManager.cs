@@ -1,4 +1,4 @@
-using Game.Components.Pools;
+using Game.Pools;
 using UnityEngine;
 
 namespace Game.Managers
@@ -12,6 +12,12 @@ namespace Game.Managers
 
         [SerializeField] private AudioPool m_sfxAudioPool;
         [SerializeField] private ParticlesPool m_orbParticlesPool;
+
+        public void ReleaseAllPools()
+        {
+            m_sfxAudioPool.ReleaseAll();
+            m_orbParticlesPool.ReleaseAll();
+        }
 
         private void Awake()
         {

@@ -21,13 +21,7 @@ namespace Game.Entities
                 particles.transform.position = transform.position;
             }
 
-            var audio = PoolsManager.SfxAudioPool.SpawnEntity();
-            if (audio != null)
-            {
-                audio.transform.position = transform.position;
-                audio.Source.clip = m_pickupClip;
-                audio.Source.Play();
-            }
+            PoolsManager.SfxAudioPool.PlayClipAt(m_pickupClip, transform.position);
         }
     }
 }

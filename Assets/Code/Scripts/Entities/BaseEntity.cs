@@ -20,6 +20,7 @@ namespace Game.Entities
             IsSpawned = true;
             gameObject.SetActive(true);
 
+            SpawnHandler();
             OnSpawned?.Invoke();
         }
 
@@ -33,15 +34,18 @@ namespace Game.Entities
             IsSpawned = false;
             gameObject.SetActive(false);
 
+            ReleaseHandler();
             OnReleased?.Invoke();
         }
 
         protected virtual void Start()
         {
             IsSpawned = true;
-            gameObject.SetActive(true);
-
-            OnSpawned?.Invoke();
+            Release();
         }
+
+        protected abstract void SpawnHandler();
+
+        protected abstract void ReleaseHandler();
     }
 }

@@ -9,11 +9,16 @@ namespace Game.Entities
 
         private ParticleSystem m_particleSystem;
 
+        protected override void SpawnHandler()
+        {
+            m_particleSystem.Play();
+        }
+
+        protected override void ReleaseHandler() { }
+
         private void Awake()
         {
             m_particleSystem = GetComponent<ParticleSystem>();
-
-            OnSpawned += SpawnHandler;
         }
 
         private void Update()
@@ -22,11 +27,6 @@ namespace Game.Entities
             {
                 Release();
             }
-        }
-
-        private void SpawnHandler()
-        {
-            m_particleSystem.Play();
         }
     }
 }

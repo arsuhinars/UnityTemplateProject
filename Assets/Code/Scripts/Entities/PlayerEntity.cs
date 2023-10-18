@@ -31,13 +31,27 @@ namespace Game.Entities
         private CharacterMovement m_movement;
         private GameInputActions m_inputActions;
 
+        protected override void SpawnHandler()
+        {
+            IsFreezed = false;
+            m_camera.enabled = true;
+            m_camera.LookAt(transform.forward);
+            m_movement.LookDirection = new Vector2(transform.forward.x, transform.forward.z);
+            m_movement.ResetState();
+            m_inputActions.Player.Enable();
+        }
+
+        protected override void ReleaseHandler()
+        {
+            m_moveVector = Vector2.zero;
+            m_camera.enabled = false;
+            m_inputActions.Player.Disable();
+        }
+
         private void Awake()
         {
             m_movement = GetComponent<CharacterMovement>();
             m_inputActions = new();
-
-            OnSpawned += SpawnHandler;
-            OnReleased += ReleasedHandler;
         }
 
         private void OnEnable()
@@ -72,23 +86,6 @@ namespace Game.Entities
             {
                 m_movement.LookDirection = moveVec;
             }
-        }
-
-        private void SpawnHandler()
-        {
-            IsFreezed = false;
-            m_camera.enabled = true;
-            m_camera.LookAt(transform.forward);
-            m_movement.LookDirection = new Vector2(transform.forward.x, transform.forward.z);
-            m_movement.ResetState();
-            m_inputActions.Player.Enable();
-        }
-
-        private void ReleasedHandler()
-        {
-            m_moveVector = Vector2.zero;
-            m_camera.enabled = false;
-            m_inputActions.Player.Disable();
         }
 
         private void OnLookActionPerformed(InputAction.CallbackContext context)

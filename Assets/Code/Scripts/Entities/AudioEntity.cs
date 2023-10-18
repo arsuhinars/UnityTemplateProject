@@ -5,9 +5,16 @@ namespace Game.Entities
     [RequireComponent(typeof(AudioSource))]
     public class AudioEntity : BaseEntity
     {
-        public AudioSource Source => m_audioSource;
-
         private AudioSource m_audioSource;
+
+        protected override void SpawnHandler() { }
+
+        protected override void ReleaseHandler() { }
+
+        public void PlayClip(AudioClip clip)
+        {
+            m_audioSource.PlayOneShot(clip);
+        }
 
         private void Awake()
         {

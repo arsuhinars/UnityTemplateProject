@@ -4,7 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Game.Components.Pools
+namespace Game.Pools
 {
     public class EntityPool<T> : MonoBehaviour where T : BaseEntity
     {

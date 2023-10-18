@@ -1,6 +1,6 @@
 using Game.Entities;
 
-namespace Game.Components.Pools
+namespace Game.Pools
 {
     public class ParticlesPool : EntityPool<ParticlesEntity>
     {

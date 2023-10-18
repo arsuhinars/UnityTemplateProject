@@ -10,6 +10,10 @@ namespace Game.Entities
         [Header("Settings")]
         [SerializeField] private string m_targetTag = string.Empty;
 
+        protected override void SpawnHandler() { }
+
+        protected override void ReleaseHandler() { }
+
         private void OnTriggerEnter(Collider other)
         {
             if (other.CompareTag(m_targetTag))
