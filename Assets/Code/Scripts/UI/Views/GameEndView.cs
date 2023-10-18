@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 namespace Game.UI.Views
 {
-    public class GameEndView : BaseUIView
+    public class GameEndView : UiView
     {
         [SerializeField] private Button m_nextLevelButton;
         [SerializeField] private Button m_retryButton;
@@ -18,6 +18,8 @@ namespace Game.UI.Views
         {
             UpdateElements();
         }
+
+        protected override void OnHidden() { }
 
         private void Start()
         {

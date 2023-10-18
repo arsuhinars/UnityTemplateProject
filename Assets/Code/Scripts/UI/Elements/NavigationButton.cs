@@ -18,9 +18,9 @@ namespace Game.UI.Elements
         {
             base.OnPointerClick(eventData);
 
-            if (UIManager.Instance != null)
+            if (UiManager.Instance != null)
             {
-                UIManager.Instance.SetActiveView(m_targetView);
+                UiManager.Instance.SetActiveView(m_targetView);
             }
         }
     }

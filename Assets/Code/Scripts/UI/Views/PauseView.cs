@@ -4,11 +4,15 @@ using UnityEngine.UI;
 
 namespace Game.UI.Views
 {
-    public class PauseView : BaseUIView
+    public class PauseView : UiView
     {
         [SerializeField] private Button m_continueButton;
         [SerializeField] private Button m_restartButton;
         [SerializeField] private Button m_quitButton;
+
+        protected override void OnShowed() { }
+
+        protected override void OnHidden() { }
 
         private void Start()
         {

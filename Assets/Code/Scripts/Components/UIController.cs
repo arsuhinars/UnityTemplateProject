@@ -49,14 +49,14 @@ namespace Game.Components
 
         private void OnMainMenuOpened()
         {
-            UIManager.Instance.SetActiveView(MAIN_MENU_VIEW_NAME);
+            UiManager.Instance.SetActiveView(MAIN_MENU_VIEW_NAME);
         }
 
         private void OnGameStarted()
         {
             Cursor.lockState = CursorLockMode.Locked;
 
-            UIManager.Instance.SetActiveView(GAME_VIEW_NAME);
+            UiManager.Instance.SetActiveView(GAME_VIEW_NAME);
         }
 
         private void OnGameEnded(GameEndReason reason)
@@ -66,12 +66,12 @@ namespace Game.Components
             switch (reason)
             {
                 case GameEndReason.LevelFinished:
-                    UIManager.Instance.SetActiveView(LEVEL_FINISH_VIEW);
-                    UIManager.Instance.PlayClip(m_levelFinishClip);
+                    UiManager.Instance.SetActiveView(LEVEL_FINISH_VIEW);
+                    UiManager.Instance.PlayClip(m_levelFinishClip);
                     break;
                 case GameEndReason.TimeOver:
-                    UIManager.Instance.SetActiveView(TIME_OVER_VIEW);
-                    UIManager.Instance.PlayClip(m_timeOverClip);
+                    UiManager.Instance.SetActiveView(TIME_OVER_VIEW);
+                    UiManager.Instance.PlayClip(m_timeOverClip);
                     break;
             }
         }
@@ -80,21 +80,21 @@ namespace Game.Components
         {
             Cursor.lockState = CursorLockMode.None;
 
-            UIManager.Instance.SetActiveView(PAUSE_VIEW_NAME);
+            UiManager.Instance.SetActiveView(PAUSE_VIEW_NAME);
         }
 
         private void OnGameResumed()
         {
             Cursor.lockState = CursorLockMode.Locked;
 
-            UIManager.Instance.SetActiveView(GAME_VIEW_NAME);
+            UiManager.Instance.SetActiveView(GAME_VIEW_NAME);
         }
 
         private void OnLoadingStarted()
         {
             Cursor.lockState = CursorLockMode.None;
 
-            UIManager.Instance.SetActiveView(LOADING_VIEW_NAME);
+            UiManager.Instance.SetActiveView(LOADING_VIEW_NAME);
         }
     }
 }

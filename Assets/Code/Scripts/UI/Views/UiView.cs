@@ -1,11 +1,11 @@
-using Game.UI.Elements;
+using Game.UI.Transitions;
 using UnityEngine;
 
 namespace Game.UI.Views
 {
     [RequireComponent(typeof(Canvas))]
     [RequireComponent(typeof(CanvasGroup))]
-    public class BaseUIView : MonoBehaviour
+    public abstract class UiView : MonoBehaviour
     {
         private enum ViewState
         {
@@ -17,7 +17,7 @@ namespace Game.UI.Views
         private ITransition m_transition;
         private ViewState m_state = ViewState.None;
 
-        public void Show()
+        public void Show(bool instantly=false)
         {
             if (m_state == ViewState.Showed)
             {
@@ -32,12 +32,16 @@ namespace Game.UI.Views
             if (m_transition != null)
             {
                 m_transition.Show();
+                if (instantly)
+                {
+                    m_transition.Complete();
+                }
             }
 
             OnShowed();
         }
 
-        public void Hide()
+        public void Hide(bool instantly = false)
         {
             if (m_state == ViewState.Hidden)
             {
@@ -49,11 +53,15 @@ namespace Game.UI.Views
 
             if (m_transition != null)
             {
-                m_transition?.Hide(() =>
+                m_transition.Hide(() =>
                 {
                     m_canvas.enabled = false;
                     enabled = false;
                 });
+                if (instantly)
+                {
+                    m_transition.Complete();
+                }
             }
             else
             {
@@ -64,17 +72,9 @@ namespace Game.UI.Views
             OnHidden();
         }
 
-        public void Complete()
-        {
-            if (m_transition != null)
-            {
-                m_transition.Complete();
-            }
-        }
+        protected abstract void OnShowed();
 
-        protected virtual void OnShowed() { }
-
-        protected virtual void OnHidden() { }
+        protected abstract void OnHidden();
 
         protected virtual void Awake()
         {

@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 namespace Game.UI.Views
 {
-    public class LevelSelectView : BaseUIView
+    public class LevelSelectView : UiView
     {
         [SerializeField] private Button m_previousButton;
         [SerializeField] private Button m_nextButton;
@@ -23,6 +23,8 @@ namespace Game.UI.Views
         {
             StartCoroutine(UpdateElements());
         }
+
+        protected override void OnHidden() { }
 
         private void Start()
         {

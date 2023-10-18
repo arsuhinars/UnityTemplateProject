@@ -1,6 +1,6 @@
 using System;
 
-namespace Game.UI.Elements
+namespace Game.UI.Transitions
 {
     public interface ITransition
     {

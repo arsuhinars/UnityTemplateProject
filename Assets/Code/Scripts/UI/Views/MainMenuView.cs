@@ -3,9 +3,13 @@ using UnityEngine.UI;
 
 namespace Game.UI.Views
 {
-    public class MainMenuView : BaseUIView
+    public class MainMenuView : UiView
     {
         [SerializeField] private Button m_quitButton;
+
+        protected override void OnShowed() { }
+
+        protected override void OnHidden() { }
 
         private void Start()
         {

@@ -1,8 +1,9 @@
 using DG.Tweening;
+using Game.Utils;
 using System;
 using UnityEngine;
 
-namespace Game.UI.Elements
+namespace Game.UI.Transitions
 {
     [RequireComponent(typeof(CanvasGroup))]
     public class FadeTransition : MonoBehaviour, ITransition
@@ -10,7 +11,7 @@ namespace Game.UI.Elements
         public bool IsShowed => m_isShowed;
 
         [SerializeField] private float m_duration = 0.2f;
-        [SerializeField] private Ease m_ease;
+        [SerializeField] private Ease m_ease = Ease.InOutCubic;
 
         private bool m_isShowed = true;
         private CanvasGroup m_canvasGroup;
@@ -34,10 +35,7 @@ namespace Game.UI.Elements
             }
 
             m_isShowed = true;
-            m_tween = CreateFadeTween(1f, m_duration);
-            m_tween.SetEase(m_ease);
-            m_tween.SetUpdate(true);
-            m_tween.OnComplete(() => completeHandler?.Invoke());
+            m_tween = CreateTween(1f, completeHandler);
         }
 
         public void Hide(Action completeHandler = null)
@@ -48,10 +46,7 @@ namespace Game.UI.Elements
             }
 
             m_isShowed = false;
-            m_tween = CreateFadeTween(0f, m_duration);
-            m_tween.SetEase(m_ease);
-            m_tween.SetUpdate(true);
-            m_tween.OnComplete(() => completeHandler?.Invoke());
+            m_tween = CreateTween(0f, completeHandler);
         }
 
         public void Complete()
@@ -60,13 +55,12 @@ namespace Game.UI.Elements
             m_tween?.Kill();
         }
 
-        private Tween CreateFadeTween(float endAlphaValue, float duration)
+        private Tween CreateTween(float endAlphaValue, Action completeHandler)
         {
-            return DOTween.To(
-                () => m_canvasGroup.alpha,
-                (a) => m_canvasGroup.alpha = a,
-                endAlphaValue, duration
-            );
+            return m_canvasGroup.DOAlpha(endAlphaValue, m_duration)
+                .SetEase(m_ease)
+                .SetUpdate(true)
+                .OnComplete(() => completeHandler?.Invoke());
         }
     }
 }

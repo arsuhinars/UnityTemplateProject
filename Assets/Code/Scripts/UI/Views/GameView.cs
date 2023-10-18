@@ -5,13 +5,17 @@ using UnityEngine;
 
 namespace Game.UI.Views
 {
-    public class GameView : BaseUIView
+    public class GameView : UiView
     {
         [SerializeField] private TextMeshProUGUI m_timerText;
         [SerializeField] private TextMeshProUGUI m_orbsCounterText;
 
         private readonly StringBuilder m_timerTextBuilder = new();
         private readonly StringBuilder m_orbsCounterTextBuilder = new();
+
+        protected override void OnShowed() { }
+
+        protected override void OnHidden() { }
 
         private void Start()
         {

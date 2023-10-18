@@ -4,9 +4,9 @@ using UnityEngine;
 
 namespace Game.Managers
 {
-    public class UIManager : MonoBehaviour
+    public class UiManager : MonoBehaviour
     {
-        public static UIManager Instance { get; private set; }
+        public static UiManager Instance { get; private set; }
 
         [Header("Components")]
         [SerializeField] private Transform m_viewsRoot;
@@ -16,8 +16,8 @@ namespace Game.Managers
         [SerializeField] private AudioSource m_uiAudioSource;
         [SerializeField] private AudioClip m_clickSound;
 
-        private Dictionary<string, BaseUIView> m_viewsByName;
-        private BaseUIView m_activeView = null;
+        private Dictionary<string, UiView> m_viewsByName;
+        private UiView m_activeView = null;
 
         public void SetActiveView(string viewName)
         {
@@ -27,12 +27,15 @@ namespace Game.Managers
                 return;
             }
 
-            m_activeView?.Hide();
+            if (m_activeView != null)
+            {
+                m_activeView.Hide();
+            }
             m_activeView = view;
             view.Show();
         }
 
-        public BaseUIView GetView(string viewName)
+        public UiView GetView(string viewName)
         {
             if (m_viewsByName.TryGetValue(viewName, out var view))
             {
@@ -68,14 +71,12 @@ namespace Game.Managers
             {
                 if (view.name == m_initialViewName)
                 {
-                    view.Show();
+                    view.Show(true);
                 }
                 else
                 {
-                    view.Hide();
+                    view.Hide(true);
                 }
-
-                view.Complete();
             }
         }
 
@@ -95,7 +96,7 @@ namespace Game.Managers
             {
                 var child = m_viewsRoot.GetChild(i);
                 
-                if (!child.TryGetComponent<BaseUIView>(out var view))
+                if (!child.TryGetComponent<UiView>(out var view))
                 {
                     Debug.LogError("View elements in view container must be inherited from BaseUIView");
                     continue;

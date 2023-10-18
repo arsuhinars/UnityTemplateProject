@@ -1,26 +1,13 @@
-using Game.Managers;
 using System;
-using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 namespace Game.UI.Elements
 {
-    public class BaseButton : Button
+    public class BaseButton : Button, IInteractableStateChanged
     {
-        public event Action OnBecameInteractable;
-        public event Action OnBecameUninteractable;
+        public event Action<bool> OnInteractableStateChanged;
 
         private bool m_isInteractable;
-
-        public override void OnPointerClick(PointerEventData eventData)
-        {
-            base.OnPointerClick(eventData);
-
-            if (IsInteractable() && UIManager.Instance != null)
-            {
-                UIManager.Instance.PlayClickSound();
-            }
-        }
 
         protected override void DoStateTransition(SelectionState state, bool instant)
         {
@@ -29,12 +16,12 @@ namespace Game.UI.Elements
             if (state == SelectionState.Disabled && m_isInteractable)
             {
                 m_isInteractable = false;
-                OnBecameUninteractable?.Invoke();
+                OnInteractableStateChanged?.Invoke(false);
             }
             else if (state != SelectionState.Disabled && !m_isInteractable)
             {
                 m_isInteractable = true;
-                OnBecameInteractable?.Invoke();
+                OnInteractableStateChanged?.Invoke(true);
             }
         }
 
