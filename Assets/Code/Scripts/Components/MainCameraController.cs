@@ -5,19 +5,17 @@ using UnityEngine.Rendering.Universal;
 
 namespace Game.Components
 {
-    [RequireComponent(typeof(Camera))]
-    [RequireComponent(typeof(AudioListener))]
     public class MainCameraController : MonoBehaviour
     {
-        private Camera m_camera;
-        private UniversalAdditionalCameraData m_cameraData;
-        private AudioListener m_listener;
+        [SerializeField] private Camera m_uiCamera;
+
+        private AudioListener m_uiCameraListener;
+        private UniversalAdditionalCameraData m_uiCameraData;
 
         private void Awake()
         {
-            m_camera = GetComponent<Camera>();
-            m_listener = GetComponent<AudioListener>();
-            m_cameraData = m_camera.GetUniversalAdditionalCameraData();
+            m_uiCameraListener = m_uiCamera.GetComponent<AudioListener>();
+            m_uiCameraData = m_uiCamera.GetUniversalAdditionalCameraData();
         }
 
         private void Start()
@@ -30,8 +28,11 @@ namespace Game.Components
         {
             if (LevelEntities.Instance != null)
             {
-                m_listener.enabled = true;
-                m_cameraData.cameraStack.Remove(LevelEntities.Instance.GameCamera);
+                m_uiCameraListener.enabled = true;
+                m_uiCameraData.renderType = CameraRenderType.Base;
+
+                var gameCamera = LevelEntities.Instance.GameCamera;
+                gameCamera.gameObject.SetActive(false);
             }
         }
 
@@ -39,8 +40,13 @@ namespace Game.Components
         {
             if (LevelEntities.Instance != null)
             {
-                m_listener.enabled = false;
-                m_cameraData.cameraStack.Insert(0, LevelEntities.Instance.GameCamera);
+                m_uiCameraListener.enabled = false;
+                m_uiCameraData.renderType = CameraRenderType.Overlay;
+
+                var gameCamera = LevelEntities.Instance.GameCamera;
+
+                gameCamera.gameObject.SetActive(true);
+                gameCamera.GetUniversalAdditionalCameraData().cameraStack.Add(m_uiCamera);
             }
         }
     }
