@@ -1,4 +1,6 @@
+using Game.Managers;
 using System;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 namespace Game.UI.Elements
@@ -30,6 +32,13 @@ namespace Game.UI.Elements
             base.Awake();
 
             m_isInteractable = IsInteractable();
+
+            onClick.AddListener(OnClicked);
+        }
+
+        private void OnClicked()
+        {
+            UiManager.Instance.PlayClickSound();
         }
     }
 }

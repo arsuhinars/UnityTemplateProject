@@ -1,4 +1,3 @@
-using Game.Utils;
 using System;
 using System.Collections;
 using UnityEngine;
@@ -8,8 +7,18 @@ namespace Game.Managers
 {
     public class LevelManager : MonoBehaviour
     {
-        public event Action OnLoadingStarted;
-        public event Action OnLoadingFinished;
+        [Serializable]
+        public class LevelData
+        {
+            public string SceneName => m_sceneName;
+            public Sprite PreviewImage => m_previewImage;
+
+            [SerializeField] private string m_sceneName;
+            [SerializeField] private Sprite m_previewImage;
+        }
+
+        public event Action<int> OnLoadingStarted;
+        public event Action<int> OnLoadingFinished;
 
         public static LevelManager Instance { get; private set; }
 
@@ -72,7 +81,7 @@ namespace Game.Managers
         private IEnumerator LoadingCoroutine(int levelIndex)
         {
             m_isLoading = true;
-            OnLoadingStarted?.Invoke();
+            OnLoadingStarted?.Invoke(levelIndex);
 
             AsyncOperation op;
             float startTime = Time.unscaledTime;
@@ -107,7 +116,7 @@ namespace Game.Managers
 
             m_activeCoroutine = null;
             m_isLoading = false;
-            OnLoadingFinished?.Invoke();
+            OnLoadingFinished?.Invoke(levelIndex);
 
             Resources.UnloadUnusedAssets();
         }

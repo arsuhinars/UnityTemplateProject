@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 namespace Game.UI.Views
 {
-    public class GameEndView : UiView
+    public class GameEndView : UIView
     {
         [SerializeField] private Button m_nextLevelButton;
         [SerializeField] private Button m_retryButton;
@@ -72,11 +72,11 @@ namespace Game.UI.Views
 
             if (m_recordText != null)
             {
-                float recordTime = SaveManager.Instance.Data.GetLevelRecord(
+                var levelData = SaveManager.Instance.GetLevelData(
                     LevelManager.Instance.ActiveLevelIndex
                 );
 
-                m_recordText.SetText("{0:0.0} s.", recordTime);
+                m_recordText.SetText("{0:0.0} s.", levelData.recordTime);
             }
 
             if (m_nextLevelButton != null)

@@ -16,8 +16,8 @@ namespace Game.Managers
         [SerializeField] private AudioSource m_uiAudioSource;
         [SerializeField] private AudioClip m_clickSound;
 
-        private Dictionary<string, UiView> m_viewsByName;
-        private UiView m_activeView = null;
+        private Dictionary<string, UIView> m_viewsByName;
+        private UIView m_activeView = null;
 
         public void SetActiveView(string viewName)
         {
@@ -35,7 +35,7 @@ namespace Game.Managers
             view.Show();
         }
 
-        public UiView GetView(string viewName)
+        public UIView GetView(string viewName)
         {
             if (m_viewsByName.TryGetValue(viewName, out var view))
             {
@@ -96,7 +96,7 @@ namespace Game.Managers
             {
                 var child = m_viewsRoot.GetChild(i);
                 
-                if (!child.TryGetComponent<UiView>(out var view))
+                if (!child.TryGetComponent<UIView>(out var view))
                 {
                     Debug.LogError("View elements in view container must be inherited from BaseUIView");
                     continue;

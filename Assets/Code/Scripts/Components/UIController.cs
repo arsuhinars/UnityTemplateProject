@@ -90,7 +90,7 @@ namespace Game.Components
             UiManager.Instance.SetActiveView(GAME_VIEW_NAME);
         }
 
-        private void OnLoadingStarted()
+        private void OnLoadingStarted(int levelIndex)
         {
             Cursor.lockState = CursorLockMode.None;
 

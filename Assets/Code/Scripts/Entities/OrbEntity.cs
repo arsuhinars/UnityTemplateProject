@@ -15,13 +15,13 @@ namespace Game.Entities
 
         private void PickupHandler(GameObject target)
         {
-            var particles = PoolsManager.OrbParticlesPool.SpawnEntity();
+            var particles = PoolsManager.Instance.OrbParticlesPool.SpawnEntity();
             if (particles != null)
             {
                 particles.transform.position = transform.position;
             }
 
-            PoolsManager.SfxAudioPool.PlayClipAt(m_pickupClip, transform.position);
+            PoolsManager.Instance.SfxAudioPool.PlayClipAt(m_pickupClip, transform.position);
         }
     }
 }

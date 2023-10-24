@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 namespace Game.UI.Views
 {
-    public class LevelSelectView : UiView
+    public class LevelSelectView : UIView
     {
         [SerializeField] private Button m_previousButton;
         [SerializeField] private Button m_nextButton;
@@ -39,16 +39,17 @@ namespace Game.UI.Views
 
             var levelData = LevelManager.Instance.GetLevelData(m_selectedLevelIndex);
             var saveData = SaveManager.Instance.Data;
+            var levelSave = SaveManager.Instance.GetLevelData(m_selectedLevelIndex);
 
             m_previewImage.sprite = levelData.PreviewImage;
             m_levelText.text = $"Level {m_selectedLevelIndex + 1}";
-            m_recordText.text = $"Best time - {saveData.GetLevelRecord(m_selectedLevelIndex):0.0} s.";
+            m_recordText.text = $"Best time - {levelSave.recordTime:0.0} s.";
 
             m_previousButton.interactable = m_selectedLevelIndex > 0;
             m_nextButton.interactable = (m_selectedLevelIndex + 1) < LevelManager.Instance.LevelsCount;
-            m_playButton.interactable = m_selectedLevelIndex <= saveData.MaxPassedLevelIndex + 1;
+            m_playButton.interactable = m_selectedLevelIndex <= saveData.lastAvailableLevelIndex;
 
-            m_checkmark.gameObject.SetActive(m_selectedLevelIndex <= saveData.MaxPassedLevelIndex);
+            m_checkmark.gameObject.SetActive(m_selectedLevelIndex <= saveData.lastAvailableLevelIndex);
         }
 
         private void OnPreviousButtonClick()

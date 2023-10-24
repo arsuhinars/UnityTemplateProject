@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace Game.UI.Views
 {
-    public class GameView : UiView
+    public class GameView : UIView
     {
         [SerializeField] private TextMeshProUGUI m_timerText;
         [SerializeField] private TextMeshProUGUI m_orbsCounterText;

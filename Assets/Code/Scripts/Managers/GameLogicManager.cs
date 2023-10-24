@@ -80,10 +80,7 @@ namespace Game.Managers
             }
         }
 
-        private void OnMainMenuOpened()
-        {
-            GlobalEntities.Player.Release();
-        }
+        private void OnMainMenuOpened() { }
 
         private void OnGameStarted()
         {
@@ -91,11 +88,11 @@ namespace Game.Managers
             m_remainedOrbs = m_maxOrbs;
             OnOrbCollected?.Invoke();
 
-            LevelEntities.PlayerSpawnPoint.GetPositionAndRotation(
+            LevelEntities.Instance.PlayerSpawnPoint.GetPositionAndRotation(
                 out var pos, out var rot
             );
 
-            var player = GlobalEntities.Player;
+            var player = LevelEntities.Instance.Player;
             player.transform.SetPositionAndRotation(pos, rot);
             player.Release();
             player.Spawn();
@@ -103,26 +100,25 @@ namespace Game.Managers
 
         private void OnGameEnded(GameEndReason reason)
         {
-            GlobalEntities.Player.IsFreezed = true;
+            LevelEntities.Instance.Player.IsFreezed = true;
 
             switch (reason)
             {
                 case GameEndReason.LevelFinished:
                     int levelIndex = LevelManager.Instance.ActiveLevelIndex;
                     var saveData = SaveManager.Instance.Data;
+                    var levelData = SaveManager.Instance.GetLevelData(levelIndex);
 
-                    float currTime = GameLogicManager.Instance.GameTimer;
-                    float recordTime = saveData.GetLevelRecord(levelIndex);
-
-                    if (Mathf.Approximately(recordTime, 0f) || currTime < recordTime)
+                    levelData.isFinished = true;
+                    if (float.IsNaN(levelData.recordTime) || m_gameTimer < levelData.recordTime)
                     {
-                        saveData.SetLevelRecord(levelIndex, currTime);
+                        levelData.recordTime = m_gameTimer;
                     }
 
-                    saveData.MaxPassedLevelIndex = Mathf.Max(
-                        saveData.MaxPassedLevelIndex, levelIndex
-                    );
+                    saveData.lastAvailableLevelIndex = Mathf.Max(saveData.lastAvailableLevelIndex, levelIndex + 1);
 
+                    SaveManager.Instance.Data = saveData;
+                    SaveManager.Instance.SetLevelData(levelIndex, levelData);
                     SaveManager.Instance.Save();
 
                     break;
@@ -131,24 +127,32 @@ namespace Game.Managers
 
         private void OnGamePaused()
         {
-            GlobalEntities.Player.IsFreezed = true;
+            LevelEntities.Instance.Player.IsFreezed = true;
         }
 
         private void OnGameResumed()
         {
-            GlobalEntities.Player.IsFreezed = false;
+            LevelEntities.Instance.Player.IsFreezed = false;
         }
 
-        private void OnLoadingStarted()
+        private void OnLoadingStarted(int levelIndex)
         {
-            GlobalEntities.Player.Release();
-        }
-
-        private void OnLoadingFinished()
-        {
-            if (LevelManager.Instance.IsLevelLoaded)
+            if (LevelEntities.Instance != null)
             {
-                var orbs = LevelEntities.Orbs;
+                LevelEntities.Instance.Player.Release();
+            }
+
+            if (PoolsManager.Instance != null)
+            {
+                PoolsManager.Instance.ReleaseAllPools();
+            }
+        }
+
+        private void OnLoadingFinished(int levelIndex)
+        {
+            if (levelIndex != -1)
+            {
+                var orbs = LevelEntities.Instance.Orbs;
                 for (int i = 0; i < orbs.Length; i++)
                 {
                     orbs[i].OnPickedUp += OnOrbPickedUp;

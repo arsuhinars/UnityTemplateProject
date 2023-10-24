@@ -5,7 +5,7 @@ namespace Game.UI.Views
 {
     [RequireComponent(typeof(Canvas))]
     [RequireComponent(typeof(CanvasGroup))]
-    public abstract class UiView : MonoBehaviour
+    public abstract class UIView : MonoBehaviour
     {
         private enum ViewState
         {
