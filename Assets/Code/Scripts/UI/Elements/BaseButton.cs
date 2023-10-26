@@ -38,7 +38,7 @@ namespace Game.UI.Elements
 
         private void OnClicked()
         {
-            UiManager.Instance.PlayClickSound();
+            UIManager.Instance.PlayClickSound();
         }
     }
 }

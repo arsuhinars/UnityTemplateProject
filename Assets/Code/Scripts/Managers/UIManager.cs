@@ -4,9 +4,9 @@ using UnityEngine;
 
 namespace Game.Managers
 {
-    public class UiManager : MonoBehaviour
+    public class UIManager : MonoBehaviour
     {
-        public static UiManager Instance { get; private set; }
+        public static UIManager Instance { get; private set; }
 
         [Header("Components")]
         [SerializeField] private Transform m_viewsRoot;
