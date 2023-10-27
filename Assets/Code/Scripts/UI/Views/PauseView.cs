@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 namespace Game.UI.Views
 {
-    public class PauseView : UIView
+    public class PauseView : BaseView
     {
         [SerializeField] private Button m_continueButton;
         [SerializeField] private Button m_restartButton;

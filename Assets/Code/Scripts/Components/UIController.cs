@@ -1,6 +1,6 @@
 using Game.Managers;
-using Game.Utils;
 using UnityEngine;
+using static Game.Managers.GameEventsManager;
 
 namespace Game.Components
 {

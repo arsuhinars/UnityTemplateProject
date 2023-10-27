@@ -3,7 +3,7 @@ using UnityEngine.UI;
 
 namespace Game.UI.Views
 {
-    public class MainMenuView : UIView
+    public class MainMenuView : BaseView
     {
         [SerializeField] private Button m_quitButton;
 

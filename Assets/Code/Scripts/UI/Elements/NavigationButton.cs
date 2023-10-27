@@ -1,6 +1,5 @@
 using Game.Managers;
 using UnityEngine;
-using UnityEngine.EventSystems;
 
 namespace Game.UI.Elements
 {
@@ -14,10 +13,15 @@ namespace Game.UI.Elements
 
         [SerializeField] private string m_targetView;
 
-        public override void OnPointerClick(PointerEventData eventData)
+        protected override void Awake()
         {
-            base.OnPointerClick(eventData);
+            base.Awake();
 
+            onClick.AddListener(OnClicked);
+        }
+
+        private void OnClicked()
+        {
             if (UIManager.Instance != null)
             {
                 UIManager.Instance.SetActiveView(m_targetView);

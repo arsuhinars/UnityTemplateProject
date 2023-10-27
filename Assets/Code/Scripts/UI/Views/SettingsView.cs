@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 namespace Game.UI.Views
 {
-    public class SettingView : UIView
+    public class SettingView : BaseView
     {
         [SerializeField] private Slider m_sfxVolumeSlider;
         [SerializeField] private Slider m_musicVolumeSlider;

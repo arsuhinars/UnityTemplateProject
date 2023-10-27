@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 namespace Game.UI.Views
 {
-    public class GameEndView : UIView
+    public class GameEndView : BaseView
     {
         [SerializeField] private Button m_nextLevelButton;
         [SerializeField] private Button m_retryButton;

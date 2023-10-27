@@ -1,6 +1,6 @@
 ﻿namespace Game.UI.Views
 {
-    public class LoadingView : UIView
+    public class LoadingView : BaseView
     {
         protected override void OnHidden() { }
 

@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 namespace Game.UI.Views
 {
-    public class LevelSelectView : UIView
+    public class LevelSelectView : BaseView
     {
         [SerializeField] private Button m_previousButton;
         [SerializeField] private Button m_nextButton;

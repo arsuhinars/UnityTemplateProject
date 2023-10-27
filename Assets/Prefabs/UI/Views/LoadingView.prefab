@@ -448,7 +448,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_popupTarget: {fileID: 125984012006129243}
   m_popupScale: {x: 0.8, y: 0.8, z: 0.8}
-  m_fade: 0
+  m_fade: 1
   m_duration: 0.15
   m_ease: 9
 --- !u!1 &8247468936043561174
