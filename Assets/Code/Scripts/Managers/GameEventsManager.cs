@@ -1,4 +1,3 @@
-using Game.Utils;
 using System;
 using System.Collections;
 using UnityEngine;
@@ -7,6 +6,16 @@ namespace Game.Managers
 {
     public class GameEventsManager : MonoBehaviour
     {
+        public enum GameState
+        {
+            None, MainMenu, Started, Ended, Paused
+        }
+
+        public enum GameEndReason
+        {
+            LevelFinished, TimeOver
+        }
+
         public event Action OnMainMenuOpened;
         public event Action OnStarted;
         public event Action<GameEndReason> OnEnded;

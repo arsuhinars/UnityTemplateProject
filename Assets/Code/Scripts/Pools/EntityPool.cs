@@ -12,7 +12,6 @@ namespace Game.Pools
         [SerializeField] private int m_poolSize = 10;
         [Space]
         [SerializeField] private bool m_releaseOnGameStart = true;
-        [SerializeField] private bool m_releaseInMainMenu = true;
 
         private LinkedList<T> m_activeEntities;
         private LinkedList<T> m_inactiveEntities;
@@ -46,7 +45,6 @@ namespace Game.Pools
 
         private IEnumerator Start()
         {
-            GameEventsManager.Instance.OnMainMenuOpened += OnMainMenuOpened;
             GameEventsManager.Instance.OnStarted += OnGameStarted;
 
             m_activeEntities = new();
@@ -70,7 +68,6 @@ namespace Game.Pools
         {
             if (GameEventsManager.Instance != null)
             {
-                GameEventsManager.Instance.OnMainMenuOpened -= OnMainMenuOpened;
                 GameEventsManager.Instance.OnStarted -= OnGameStarted;
             }
         }
@@ -90,15 +87,7 @@ namespace Game.Pools
                 it = next;
             }
         }
-
-        private void OnMainMenuOpened()
-        {
-            if (m_releaseInMainMenu)
-            {
-                ReleaseAll();
-            }
-        }
-
+        
         private void OnGameStarted()
         {
             if (m_releaseOnGameStart)

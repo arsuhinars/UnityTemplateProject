@@ -22,10 +22,11 @@ namespace Game.Managers
 
         public static LevelManager Instance { get; private set; }
 
+        public int LevelsCount => m_levels.Length;
         public int ActiveLevelIndex => m_activeLevelIndex;
+        public LevelData ActiveLevelData => m_levels[m_activeLevelIndex];
         public bool IsLoading => m_isLoading;
         public bool IsLevelLoaded => m_activeLevelIndex != -1;
-        public int LevelsCount => m_levels.Length;
 
         [Header("Settings")]
         [SerializeField] private LevelData[] m_levels;

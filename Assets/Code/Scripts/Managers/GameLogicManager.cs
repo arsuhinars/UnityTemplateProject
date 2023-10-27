@@ -1,6 +1,7 @@
 using Game.Utils;
 using System;
 using UnityEngine;
+using static Game.Managers.GameEventsManager;
 
 namespace Game.Managers
 {
@@ -16,6 +17,7 @@ namespace Game.Managers
         public int MaxOrbs => m_maxOrbs;
 
         [SerializeField] private float m_gameDuration = 60f;
+        [SerializeField] private GameObject m_mainMenuBackground;
 
         private float m_gameTimer = 0f;
         private int m_maxOrbs;
@@ -80,11 +82,15 @@ namespace Game.Managers
             }
         }
 
-        private void OnMainMenuOpened() { }
+        private void OnMainMenuOpened()
+        {
+            m_mainMenuBackground.SetActive(true);
+        }
 
         private void OnGameStarted()
         {
             m_gameTimer = 0f;
+            m_mainMenuBackground.SetActive(false);
             m_remainedOrbs = m_maxOrbs;
             OnOrbCollected?.Invoke();
 
